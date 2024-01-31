@@ -1,3 +1,5 @@
+# Класс Книга должен содержать информацию о названии, авторе и жанре книги
+
 class Book:
     def __init__(self, title=None, author=None, year=None):
         self.title = title
