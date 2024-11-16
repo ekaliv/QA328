@@ -1,0 +1,62 @@
+select Salary
+from Teachers
+where Salary>17000
+union
+select Financing
+from Departments
+where Financing>17000
+order by Salary desc
+
+select '15000 - 20000', count(*)
+from Teachers
+where salary between 15000 and 20000
+union all
+select '20000 - 25000', count(*)
+from Teachers
+where salary between 20000 and 25000
+union all
+select '25000 - 35000', count(*)
+from Teachers
+where salary between 25000 and 35000
+union all
+select '35000 - 450000', count(*)
+from Teachers
+where salary between 35000 and 450000
+
+select 'Teachers' as name, count(*) as cnt
+from Teachers
+where Salary>17000
+union all
+select'Teachers' as name, count(*) as cnt
+from Departments
+where Financing>17000
+union all
+select 'All',sum(AllSum.Allcount)
+from
+(
+select count(*) as Allcount
+from Teachers
+where Salary>17000
+union all
+select count(*)
+from Departments
+where Financing>17000)
+as AllSum
+select d.name as Departments_name, g.name as Groups_name, f.name as Faculties_name
+from Departments as d
+join Groups as g on d.id = g.DepartmentId
+join Faculties as f on f.id = d.FacultyId
+
+select d.name as Departments_name, g.name as Groups_name, f.name as Faculties_name
+from Departments as d
+join Groups as g on d.id = g.DepartmentId
+join Faculties as f on f.id = d.FacultyId
+where g.name like 'G-1%'
+order by g.name
+
+select t.Name +' '+ t.Surname as fullName, ad.AddLectureRoom as AddLectureRoom
+from Teachers as t
+left join AdditionalLectures as ad on t.Id=ad.AddTeacherId
+select t.name as Teachers_name, t.surname as Teachers_surname, a.AddLectureRoom as num_AddLectureRoom
+from Teachers as t
+left join AdditionalLectures as a on t.id = a.AddTeacherId
